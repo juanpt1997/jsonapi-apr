@@ -42,6 +42,7 @@ class ListArticlesTest extends TestCase
     /** @test */
     public function can_fetch_all_articles()
     {
+        $this->withoutExceptionHandling();
         $articles = Article::factory(3)->create();
 
         $response = $this->getJson(route('api.v1.articles.index'));
@@ -84,6 +85,9 @@ class ListArticlesTest extends TestCase
                         'self' => route('api.v1.articles.show', $articles[2])
                     ]
                 ],
+            ],
+            'links' => [
+                'self' => route('api.v1.articles.index')
             ]
         ]);
 
