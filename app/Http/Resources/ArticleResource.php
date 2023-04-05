@@ -15,7 +15,7 @@ class ArticleResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            // ? data is redundant because laravel resources actually returns the response encapsulated as data
+            // ? data is redundant because3 laravel resources actually returns the response encapsulated as data
             // 'data' => [
                 'type' => 'articles',
                 'id' => (string) $this->resource->getRouteKey(),
@@ -29,5 +29,13 @@ class ArticleResource extends JsonResource
                 ]
             // ]
         ];
+    }
+
+    // overriding that method we are able to send the response with a header as the JSON Api Spec requires
+    public function toResponse($request)
+    {
+        return parent::toResponse($request)->withHeaders([
+            'Location' => route('api.v1.articles.show', $this->resource)
+        ]);
     }
 }

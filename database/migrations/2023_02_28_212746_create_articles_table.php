@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->longText('content');
-            $table->foreignId('category_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            // $table->foreignId('category_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            // $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
 
